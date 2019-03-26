@@ -29,6 +29,8 @@ public class MyMapFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    //Map
+
     public MyMapFragment() {
         // Required empty public constructor
     }
@@ -58,6 +60,7 @@ public class MyMapFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
