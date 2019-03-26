@@ -1,8 +1,11 @@
 package com.example.tnormant.findfood;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,12 +17,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, HomeFragment.OnFragmentInteractionListener, MyMapFragment.OnFragmentInteractionListener {
+
+    private FragmentManager fm = null;
+    private Fragment fragment = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        fm = getSupportFragmentManager(); fragment = new HomeFragment();
+        fm.beginTransaction().replace(R.id.content_main,fragment).commit();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -79,23 +87,23 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        fragment = new HomeFragment();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        switch(id){
+            case R.id.nav_map:
+                fragment = new MyMapFragment();
+                break;
+            default:
         }
+        fm.beginTransaction().replace(R.id.content_main,fragment).commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
