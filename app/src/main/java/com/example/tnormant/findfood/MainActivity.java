@@ -17,7 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, HomeFragment.OnFragmentInteractionListener, MyMapFragment.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, HomeFragment.OnFragmentInteractionListener, MyMapFragment.OnFragmentInteractionListener, MyListeFragment.OnFragmentInteractionListener {
 
     private FragmentManager fm = null;
     private Fragment fragment = null;
@@ -26,8 +26,9 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        fm = getSupportFragmentManager(); fragment = new HomeFragment();
-        fm.beginTransaction().replace(R.id.content_main,fragment).commit();
+        fm = getSupportFragmentManager();
+        fragment = new HomeFragment();
+        fm.beginTransaction().replace(R.id.content_main, fragment).commit();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -89,13 +90,17 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         fragment = new HomeFragment();
 
-        switch(id){
+        switch (id) {
             case R.id.nav_map:
                 fragment = new MyMapFragment();
                 break;
+
+            case R.id.nav_liste:
+                fragment = new MyListeFragment();
+                break;
             default:
         }
-        fm.beginTransaction().replace(R.id.content_main,fragment).commit();
+        fm.beginTransaction().replace(R.id.content_main, fragment).commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
