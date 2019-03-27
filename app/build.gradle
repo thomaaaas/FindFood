@@ -33,4 +33,5 @@ dependencies {
     // Room components
     implementation "android.arch.persistence.room:runtime:$rootProject.roomVersion"
     annotationProcessor "android.arch.persistence.room:compiler:$rootProject.roomVersion"
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
 }
