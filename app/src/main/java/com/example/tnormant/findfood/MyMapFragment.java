@@ -1,12 +1,15 @@
 package com.example.tnormant.findfood;
 
 import android.Manifest;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -21,6 +24,8 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.List;
 
 
 /**
@@ -40,6 +45,8 @@ public class MyMapFragment extends Fragment implements GoogleMap.OnMyLocationBut
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private RestaurantViewModel mRestaurantViewModel;
 
     private OnFragmentInteractionListener mListener;
 
@@ -155,6 +162,20 @@ public class MyMapFragment extends Fragment implements GoogleMap.OnMyLocationBut
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
+
+        mRestaurantViewModel = ViewModelProviders.of(this).get(RestaurantViewModel.class);
+        mRestaurantViewModel.getAllRestaurant().observe(this, new Observer<List<Restaurant>>() {
+            @Override
+            public void onChanged(@Nullable final List<Restaurant> restaurant) {
+                // Update the cached copy of the words in the adapter.
+                for (Restaurant restau : restaurant){
+                    LatLng pos = new LatLng(restau.getLatitude(), restau.getLongitude());
+                    mMap.addMarker(new MarkerOptions().position(pos)
+                            .title(restau.getNom()));
+                }
+            }
+        });
+
         mMap.setMyLocationEnabled(true);
         mMap.setOnMyLocationButtonClickListener(this);
         mMap.setOnMyLocationClickListener(this);
