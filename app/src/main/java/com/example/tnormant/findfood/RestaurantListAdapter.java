@@ -44,7 +44,7 @@ class RestaurantViewHolder extends RecyclerView.ViewHolder {
         }
     }
 
-    void setWords(List<Restaurant> restaurants) {
+    void setRestaurants(List<Restaurant> restaurants) {
         mRestaurant = restaurants;
         notifyDataSetChanged();
     }
