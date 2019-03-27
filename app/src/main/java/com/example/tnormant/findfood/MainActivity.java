@@ -58,18 +58,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        final RestaurantListAdapter adapter = new RestaurantListAdapter(this);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRestaurantViewModel = ViewModelProviders.of(this).get(RestaurantViewModel.class);
-        mRestaurantViewModel.getAllRestaurant().observe(this, new Observer<List<Restaurant>>() {
-            @Override
-            public void onChanged(@Nullable final List<Restaurant> restaurant) {
-                // Update the cached copy of the words in the adapter.
-                adapter.setRestaurants(restaurant);
-            }
-        });
+
     }
 
     @Override
@@ -118,6 +107,18 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.nav_liste:
                 fragment = new MyListeFragment();
+                RecyclerView recyclerView = findViewById(R.id.recyclerview);
+                final RestaurantListAdapter adapter = new RestaurantListAdapter(this);
+                recyclerView.setAdapter(adapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                mRestaurantViewModel = ViewModelProviders.of(this).get(RestaurantViewModel.class);
+                mRestaurantViewModel.getAllRestaurant().observe(this, new Observer<List<Restaurant>>() {
+                    @Override
+                    public void onChanged(@Nullable final List<Restaurant> restaurant) {
+                        // Update the cached copy of the words in the adapter.
+                        adapter.setRestaurants(restaurant);
+                    }
+                });
                 break;
             default:
         }
