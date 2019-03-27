@@ -168,7 +168,7 @@ public class MyMapFragment extends Fragment implements GoogleMap.OnMyLocationBut
             public void onChanged(@Nullable final List<Restaurant> restaurant) {
                 for (Restaurant restau : restaurant){
                     LatLng pos = new LatLng(restau.getLatitude(), restau.getLongitude());
-                    mMap.addMarker(new MarkerOptions().position(pos).title(restau.getNom()));
+                    mMap.addMarker(new MarkerOptions().position(pos).title(restau.getNom()).alpha(0.4f));
                 }
             }
         });
