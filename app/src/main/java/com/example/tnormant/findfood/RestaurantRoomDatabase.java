@@ -54,6 +54,8 @@ public abstract class RestaurantRoomDatabase extends RoomDatabase {
             mDao.insert(restaurant);
             restaurant = new Restaurant(3,47.62738220139595,6.8578290939331055,"KFC");
             mDao.insert(restaurant);
+            restaurant = new Restaurant(4,47.627767234357584,6.858063787221909,"Quick");
+            mDao.insert(restaurant);
             return null;
         }
     }

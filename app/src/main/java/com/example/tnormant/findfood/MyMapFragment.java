@@ -162,16 +162,13 @@ public class MyMapFragment extends Fragment implements GoogleMap.OnMyLocationBut
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-
         mRestaurantViewModel = ViewModelProviders.of(this).get(RestaurantViewModel.class);
         mRestaurantViewModel.getAllRestaurant().observe(this, new Observer<List<Restaurant>>() {
             @Override
             public void onChanged(@Nullable final List<Restaurant> restaurant) {
-                // Update the cached copy of the words in the adapter.
                 for (Restaurant restau : restaurant){
                     LatLng pos = new LatLng(restau.getLatitude(), restau.getLongitude());
-                    mMap.addMarker(new MarkerOptions().position(pos)
-                            .title(restau.getNom()));
+                    mMap.addMarker(new MarkerOptions().position(pos).title(restau.getNom()));
                 }
             }
         });
@@ -179,9 +176,6 @@ public class MyMapFragment extends Fragment implements GoogleMap.OnMyLocationBut
         mMap.setMyLocationEnabled(true);
         mMap.setOnMyLocationButtonClickListener(this);
         mMap.setOnMyLocationClickListener(this);
-        mMap.addMarker(new MarkerOptions().position(sydney)
-                .title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 
     /**
