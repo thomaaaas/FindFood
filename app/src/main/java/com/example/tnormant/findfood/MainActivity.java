@@ -104,6 +104,10 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_map:
                 fragment = new MyMapFragment();
                 break;
+            case R.id.nav_newRestaurant:
+                fragment = new NewRestaurantFragment();
+                break;
+
 
             case R.id.nav_liste:
                 fragment = new MyListeFragment();
