@@ -107,8 +107,6 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_newRestaurant:
                 fragment = new NewRestaurantFragment();
                 break;
-
-
             case R.id.nav_liste:
                 fragment = new MyListeFragment();
                 RecyclerView recyclerView = findViewById(R.id.recyclerview);
