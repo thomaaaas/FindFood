@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,6 +56,13 @@ public class NewRestaurantFragment extends Fragment {
                 Restaurant restaurant = new Restaurant(NO_RESTAURANT,Float.parseFloat(latitude.getText().toString()),
                         Float.parseFloat(longitude.getText().toString()),nameRestaurant.getText().toString());
                 mRestaurantViewModel.insert(restaurant);
+
+                MyListeFragment newFragment = new MyListeFragment();
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.content_main, newFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
             } else {
                 Toast.makeText(getActivity(),"Saisie invalide",Toast.LENGTH_SHORT).show();
             }
