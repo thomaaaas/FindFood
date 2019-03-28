@@ -27,22 +27,19 @@ public class NewRestaurantFragment extends Fragment {
     private EditText longitude;
     private Button buttonRestaurant;
     private RestaurantViewModel mRestaurantViewModel;
-    int NO_RESTAURANT;
+    int NO_RESTAURANT = 0;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_new_restaurant, container, false);
-        NO_RESTAURANT = 5;
         mRestaurantViewModel = ViewModelProviders.of(this).get(RestaurantViewModel.class);
         nameRestaurant = rootView.findViewById(R.id.nameRestaurant);
         latitude = rootView.findViewById(R.id.latitude);
         longitude = rootView.findViewById(R.id.longitude);
         buttonRestaurant = rootView.findViewById(R.id.buttonRestaurant);
         buttonRestaurant.setOnClickListener(buttonRestaurantListener);
-
         return rootView;
-
 
     }
 
