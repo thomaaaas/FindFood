@@ -8,6 +8,6 @@
     <string name="action_settings">Settings</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Page d\'accueil</string>
+    <string name="hello_blank_fragment">Bienvenu sur la page d\'accueil !</string>
 
 </resources>
