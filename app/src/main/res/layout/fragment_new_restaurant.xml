@@ -20,22 +20,22 @@
         android:id="@+id/nameRestaurant"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="nom"/>
+        android:hint="nom" />
 
     <EditText
         android:id="@+id/latitude"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number"
-        android:text="latitude" />
+        android:hint="latitude"
+        android:inputType="numberDecimal" />
 
     <EditText
         android:id="@+id/longitude"
         android:layout_width="match_parent"
         android:layout_height="42dp"
         android:ems="10"
-        android:inputType="number"
-        android:text="longitude" />
+        android:hint="longitude"
+        android:inputType="numberDecimal" />
 
     <Button
         android:id="@+id/buttonRestaurant"
