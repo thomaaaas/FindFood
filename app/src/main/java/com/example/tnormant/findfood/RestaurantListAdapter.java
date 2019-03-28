@@ -1,11 +1,15 @@
 package com.example.tnormant.findfood;
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -13,10 +17,12 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
 
 class RestaurantViewHolder extends RecyclerView.ViewHolder {
     private final TextView RestaurantItemView;
+    Button button;
 
     private RestaurantViewHolder(View itemView) {
         super(itemView);
         RestaurantItemView = itemView.findViewById(R.id.textView);
+        button = itemView.findViewById(R.id.button_id);
     }
 }
 
@@ -30,14 +36,23 @@ class RestaurantViewHolder extends RecyclerView.ViewHolder {
     @Override
     public RestaurantViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = mInflater.inflate(R.layout.fragment_my_liste, parent, false);
+
         return new RestaurantViewHolder(itemView);
     }
+
+
 
     @Override
     public void onBindViewHolder(RestaurantViewHolder holder, int position) {
         if (mRestaurant != null) {
-            Restaurant current = mRestaurant.get(position);
+            final Restaurant current = mRestaurant.get(position);
             holder.RestaurantItemView.setText(current.getNom());
+            holder.button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
         } else {
             // Covers the case of data not being ready yet.
             holder.RestaurantItemView.setText("Pas de restaurant");
