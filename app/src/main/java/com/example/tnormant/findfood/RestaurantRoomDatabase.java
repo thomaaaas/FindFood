@@ -47,15 +47,6 @@ public abstract class RestaurantRoomDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(final Void... params) {
-            mDao.deleteAll();
-            Restaurant restaurant = new Restaurant(1,47.64644268068093,6.854897167177228,"Eat-Side");
-            mDao.insert(restaurant);
-            restaurant = new Restaurant(2,47.63652099774848,6.857539415359497,"Flam's");
-            mDao.insert(restaurant);
-            restaurant = new Restaurant(3,47.62738220139595,6.8578290939331055,"KFC");
-            mDao.insert(restaurant);
-            restaurant = new Restaurant(4,47.627767234357584,6.858063787221909,"Quick");
-            mDao.insert(restaurant);
             return null;
         }
     }
