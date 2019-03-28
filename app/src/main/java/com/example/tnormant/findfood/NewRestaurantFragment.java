@@ -1,9 +1,9 @@
 package com.example.tnormant.findfood;
 
-import android.net.Uri;
+
+import android.arch.lifecycle.LiveData;
 import android.os.Bundle;
 
-import android.os.Debug;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,11 +13,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.List;
+
 
 public class NewRestaurantFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
 
     // TODO: Rename and change types of parameters
     private EditText nameRestaurant;
@@ -29,18 +28,17 @@ public class NewRestaurantFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_new_restaurant, container, true);
+        View rootView = inflater.inflate(R.layout.fragment_new_restaurant, container, false);
 
-        nameRestaurant = (EditText) rootView.findViewById(R.id.nameRestaurant);
-        latitude = (EditText) rootView.findViewById(R.id.latitude);
-        longitude = (EditText) rootView.findViewById(R.id.longitude);
-        buttonRestaurant = (Button) rootView.findViewById(R.id.buttonRestaurant);
-
+        nameRestaurant = rootView.findViewById(R.id.nameRestaurant);
+        latitude = rootView.findViewById(R.id.latitude);
+        longitude = rootView.findViewById(R.id.longitude);
+        buttonRestaurant = rootView.findViewById(R.id.buttonRestaurant);
+        buttonRestaurant.setOnClickListener(buttonRestaurantListener);
 
         return rootView;
 
 
-        //return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     private View.OnClickListener buttonRestaurantListener = new View.OnClickListener() {
@@ -48,7 +46,17 @@ public class NewRestaurantFragment extends Fragment {
         @Override
         public void onClick(View v) {
 
-            System.out.println("j'ai cliqué");
+
+
+            System.out.println(nameRestaurant.getText().toString()+ " nom RESTO !!!!");
+            Restaurant resto = new Restaurant();
+            resto.setNom(nameRestaurant.getText().toString());
+resto.setLatitude(Double.parseDouble(latitude.getText().toString()));
+resto.setLongitude(Double.parseDouble(longitude.getText().toString()));
+
+
+
+
         }
 
     };
