@@ -69,6 +69,7 @@ public class NewRestaurantFragment extends Fragment {
                 ((MainActivity)getActivity()).hide();
             } else {
                 Toast.makeText(getActivity(),"Saisie invalide",Toast.LENGTH_SHORT).show();
+                ((MainActivity)getActivity()).hide();
             }
         }
     };
