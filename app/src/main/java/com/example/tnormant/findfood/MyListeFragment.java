@@ -13,11 +13,20 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.List;
 
@@ -88,7 +97,7 @@ public class MyListeFragment extends Fragment {
                 adapter.setRestaurants(restaurant);
             }
         });
-        fragmentTransaction= getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         return v;
     }
 

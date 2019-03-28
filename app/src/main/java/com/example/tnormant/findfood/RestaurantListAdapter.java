@@ -12,6 +12,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.List;
 
 import static com.example.tnormant.findfood.MyListeFragment.fragmentTransaction;
@@ -39,7 +44,6 @@ class RestaurantViewHolder extends RecyclerView.ViewHolder {
     @Override
     public RestaurantViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = mInflater.inflate(R.layout.fragment_my_liste, parent, false);
-
         return new RestaurantViewHolder(itemView);
     }
 

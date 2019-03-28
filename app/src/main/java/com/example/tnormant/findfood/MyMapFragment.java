@@ -12,11 +12,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -51,7 +54,7 @@ public class MyMapFragment extends Fragment implements GoogleMap.OnMyLocationBut
     private OnFragmentInteractionListener mListener;
 
     //Map
-    private GoogleMap mMap;
+    public GoogleMap mMap;
     MapView mMapView;
     View mView;
 
@@ -95,11 +98,11 @@ public class MyMapFragment extends Fragment implements GoogleMap.OnMyLocationBut
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState){
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         mMapView = (MapView) mView.findViewById(R.id.map);
-        if (mMapView != null){
+        if (mMapView != null) {
             mMapView.onCreate(null);
             mMapView.onResume();
             mMapView.getMapAsync(this);
@@ -148,7 +151,6 @@ public class MyMapFragment extends Fragment implements GoogleMap.OnMyLocationBut
     public void onMapReady(GoogleMap googleMap) {
         MapsInitializer.initialize(getContext());
         mMap = googleMap;
-        LatLng sydney = new LatLng(-34, 151);
         // TODO: Before enabling the My Location layer, you must request
         // location permission from the user. This sample does not include
         // a request for location permission.
@@ -166,7 +168,7 @@ public class MyMapFragment extends Fragment implements GoogleMap.OnMyLocationBut
         mRestaurantViewModel.getAllRestaurant().observe(this, new Observer<List<Restaurant>>() {
             @Override
             public void onChanged(@Nullable final List<Restaurant> restaurant) {
-                for (Restaurant restau : restaurant){
+                for (Restaurant restau : restaurant) {
                     LatLng pos = new LatLng(restau.getLatitude(), restau.getLongitude());
                     mMap.addMarker(new MarkerOptions().position(pos).title(restau.getNom()).alpha(0.4f));
                 }
