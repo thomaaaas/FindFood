@@ -20,6 +20,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.MapView;
+
 import java.util.List;
 
 
@@ -32,6 +34,7 @@ public class NewRestaurantFragment extends Fragment {
     private Button buttonRestaurant;
     private RestaurantViewModel mRestaurantViewModel;
     private MyListeFragment liste;
+    MainActivity mainActivity;
     int NO_RESTAURANT = 0;
 
     @Nullable
@@ -63,6 +66,7 @@ public class NewRestaurantFragment extends Fragment {
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
 
+                ((MainActivity)getActivity()).hide();
             } else {
                 Toast.makeText(getActivity(),"Saisie invalide",Toast.LENGTH_SHORT).show();
             }

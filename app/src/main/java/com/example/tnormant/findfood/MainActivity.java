@@ -1,7 +1,9 @@
 package com.example.tnormant.findfood;
 
+import android.app.Activity;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -23,6 +25,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import java.util.List;
@@ -108,18 +111,23 @@ public class MainActivity extends AppCompatActivity
         switch (id) {
             case R.id.nav_home:
                 fragment = new HomeFragment();
+                hide();
                 break;
             case R.id.nav_map:
                 fragment = new MyMapFragment();
+                hide();
                 break;
             case R.id.nav_newRestaurant:
                 fragment = new NewRestaurantFragment();
+                hide();
                 break;
             case R.id.nav_liste:
                 fragment = new MyListeFragment();
+                hide();
                 break;
             case R.id.nav_mail:
                 fragment = new MailFragment();
+                hide();
                 break;
             default:
         }
@@ -133,5 +141,13 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    public void hide(){
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 }
