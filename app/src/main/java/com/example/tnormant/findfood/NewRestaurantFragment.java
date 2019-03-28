@@ -42,23 +42,14 @@ public class NewRestaurantFragment extends Fragment {
     }
 
     private View.OnClickListener buttonRestaurantListener = new View.OnClickListener() {
-
         @Override
         public void onClick(View v) {
-
-
-
             System.out.println(nameRestaurant.getText().toString()+ " nom RESTO !!!!");
             Restaurant resto = new Restaurant();
             resto.setNom(nameRestaurant.getText().toString());
-resto.setLatitude(Double.parseDouble(latitude.getText().toString()));
-resto.setLongitude(Double.parseDouble(longitude.getText().toString()));
-
-
-
-
+            resto.setLatitude(Float.parseFloat(latitude.getText().toString()));
+            resto.setLongitude(Float.parseFloat(longitude.getText().toString()));
         }
-
     };
 
 }
