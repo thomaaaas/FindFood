@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import static com.example.tnormant.findfood.MyListeFragment.fragmentTransaction;
+
 public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAdapter.RestaurantViewHolder>{
 
 class RestaurantViewHolder extends RecyclerView.ViewHolder {
@@ -41,8 +43,6 @@ class RestaurantViewHolder extends RecyclerView.ViewHolder {
         return new RestaurantViewHolder(itemView);
     }
 
-
-
     @Override
     public void onBindViewHolder(RestaurantViewHolder holder, int position) {
         if (mRestaurant != null) {
@@ -51,7 +51,10 @@ class RestaurantViewHolder extends RecyclerView.ViewHolder {
             holder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    MyMapFragment newFragment = new MyMapFragment();
+                    fragmentTransaction.replace(R.id.content_main, newFragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
                 }
             });
         } else {

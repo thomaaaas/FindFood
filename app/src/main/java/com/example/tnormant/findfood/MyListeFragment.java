@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class MyListeFragment extends Fragment {
     private String mParam2;
     private RestaurantViewModel mRestaurantViewModel;
     private OnFragmentInteractionListener mListener;
-
+    public static FragmentTransaction fragmentTransaction;
     public MyListeFragment() {
         // Required empty public constructor
     }
@@ -87,6 +88,7 @@ public class MyListeFragment extends Fragment {
                 adapter.setRestaurants(restaurant);
             }
         });
+        fragmentTransaction= getActivity().getSupportFragmentManager().beginTransaction();
         return v;
     }
 
