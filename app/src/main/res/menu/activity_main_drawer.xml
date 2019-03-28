@@ -10,8 +10,8 @@
             android:title="Map" />
         <item
             android:id="@+id/nav_newRestaurant"
-            android:icon="@drawable/ic_menu_send"
-            android:title="new restaurant" />
+            android:icon="@drawable/ic_add_black_24dp"
+            android:title="Add" />
         <item
             android:id="@+id/nav_liste"
             android:icon="@drawable/ic_list_black_24dp"
