@@ -55,7 +55,7 @@ public class NewRestaurantFragment extends Fragment {
                         Float.parseFloat(longitude.getText().toString()),nameRestaurant.getText().toString());
                 mRestaurantViewModel.insert(restaurant);
             } else {
-                Toast.makeText(getActivity(),"Invalide",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"Saisie invalide",Toast.LENGTH_SHORT).show();
             }
         }
     };
