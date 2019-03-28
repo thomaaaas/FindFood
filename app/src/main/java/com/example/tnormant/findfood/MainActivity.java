@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity
 
     private FragmentManager fm = null;
     private Fragment fragment = null;
-    private RestaurantViewModel mRestaurantViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,27 +110,13 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_newRestaurant:
                 fragment = new NewRestaurantFragment();
                 break;
-
-
             case R.id.nav_liste:
                 fragment = new MyListeFragment();
-                RecyclerView recyclerView = findViewById(R.id.recyclerview);
-                final RestaurantListAdapter adapter = new RestaurantListAdapter(this);
-                recyclerView.setAdapter(adapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(this));
-                mRestaurantViewModel = ViewModelProviders.of(this).get(RestaurantViewModel.class);
-                mRestaurantViewModel.getAllRestaurant().observe(this, new Observer<List<Restaurant>>() {
-                    @Override
-                    public void onChanged(@Nullable final List<Restaurant> restaurant) {
-                        // Update the cached copy of the words in the adapter.
-                        adapter.setRestaurants(restaurant);
-                    }
-                });
                 break;
             default:
         }
-        fm.beginTransaction().replace(R.id.content_main, fragment).commit();
 
+        fm.beginTransaction().replace(R.id.content_main, fragment).commit();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

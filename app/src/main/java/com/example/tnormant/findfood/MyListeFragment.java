@@ -38,8 +38,7 @@ public class MyListeFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
-
+    private RestaurantViewModel mRestaurantViewModel;
     private OnFragmentInteractionListener mListener;
 
     public MyListeFragment() {
@@ -71,9 +70,6 @@ public class MyListeFragment extends Fragment implements View.OnClickListener {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-
-
     }
 
     @Override
@@ -83,6 +79,17 @@ public class MyListeFragment extends Fragment implements View.OnClickListener {
         Button b = (Button) v.findViewById(R.id.button_id);
         b.setOnClickListener(this);
 
+        RecyclerView recyclerView = v.findViewById(R.id.recyclerview);
+        final RestaurantListAdapter adapter = new RestaurantListAdapter(getActivity().getApplicationContext());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+        mRestaurantViewModel = ViewModelProviders.of(this).get(RestaurantViewModel.class);
+        mRestaurantViewModel.getAllRestaurant().observe(this, new Observer<List<Restaurant>>() {
+            @Override
+            public void onChanged(@Nullable final List<Restaurant> restaurant) {
+                adapter.setRestaurants(restaurant);
+            }
+        });
         return v;
     }
 
