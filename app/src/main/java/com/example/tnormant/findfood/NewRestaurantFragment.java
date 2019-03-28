@@ -30,6 +30,7 @@ public class NewRestaurantFragment extends Fragment {
     private EditText longitude;
     private Button buttonRestaurant;
     private RestaurantViewModel mRestaurantViewModel;
+    private MyListeFragment liste;
     int NO_RESTAURANT = 0;
 
     @Nullable

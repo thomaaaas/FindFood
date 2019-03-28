@@ -8,16 +8,4 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainActivity"
     tools:showIn="@layout/app_bar_main">
-
-<<<<<<< Updated upstream
-=======
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="675dp"
-        tools:layout_editor_absoluteY="0dp"
-        tools:listitem="@layout/fragment_my_liste"
-        tools:ignore="MissingConstraints" />
-
->>>>>>> Stashed changes
 </android.support.constraint.ConstraintLayout>
