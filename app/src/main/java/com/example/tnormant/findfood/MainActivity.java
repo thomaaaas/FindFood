@@ -28,7 +28,9 @@ import android.widget.Toast;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, HomeFragment.OnFragmentInteractionListener, MyMapFragment.OnFragmentInteractionListener, MyListeFragment.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, HomeFragment.OnFragmentInteractionListener,
+        MyMapFragment.OnFragmentInteractionListener, MyListeFragment.OnFragmentInteractionListener,
+        MailFragment.OnFragmentInteractionListener{
 
     private FragmentManager fm = null;
     private Fragment fragment = null;
@@ -112,6 +114,9 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_liste:
                 fragment = new MyListeFragment();
+                break;
+            case R.id.nav_mail:
+                fragment = new MailFragment();
                 break;
             default:
         }
