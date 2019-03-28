@@ -2,6 +2,8 @@ package com.example.tnormant.findfood;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +11,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.preference.PreferenceManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -20,7 +23,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -35,8 +38,6 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
         fm = getSupportFragmentManager();
         fragment = new HomeFragment();
         fm.beginTransaction().replace(R.id.content_main, fragment).commit();
@@ -61,6 +62,12 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+        SharedPreferences sharedPref =
+                PreferenceManager.getDefaultSharedPreferences(this);
+        Boolean switchPref = sharedPref.getBoolean
+                (SettingsActivity.KEY_PREF_EXAMPLE_SWITCH, false);
+        Toast.makeText(this, switchPref.toString(), Toast.LENGTH_SHORT).show();
 
 
     }
@@ -91,6 +98,8 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
             return true;
         }
 
@@ -111,6 +120,8 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_newRestaurant:
                 fragment = new NewRestaurantFragment();
                 break;
+
+
             case R.id.nav_liste:
                 fragment = new MyListeFragment();
                 RecyclerView recyclerView = findViewById(R.id.recyclerview);
