@@ -106,6 +106,9 @@ public class MainActivity extends AppCompatActivity
         fragment = new HomeFragment();
 
         switch (id) {
+            case R.id.nav_home:
+                fragment = new HomeFragment();
+                break;
             case R.id.nav_map:
                 fragment = new MyMapFragment();
                 break;
