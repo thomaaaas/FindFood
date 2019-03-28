@@ -2,6 +2,9 @@ package com.example.tnormant.findfood;
 
 
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.support.annotation.NonNull;
@@ -23,13 +26,15 @@ public class NewRestaurantFragment extends Fragment {
     private EditText latitude;
     private EditText longitude;
     private Button buttonRestaurant;
-
+    private RestaurantViewModel mRestaurantViewModel;
+    int NO_RESTAURANT;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_new_restaurant, container, false);
-
+        NO_RESTAURANT = 5;
+        mRestaurantViewModel = ViewModelProviders.of(this).get(RestaurantViewModel.class);
         nameRestaurant = rootView.findViewById(R.id.nameRestaurant);
         latitude = rootView.findViewById(R.id.latitude);
         longitude = rootView.findViewById(R.id.longitude);
@@ -44,12 +49,9 @@ public class NewRestaurantFragment extends Fragment {
     private View.OnClickListener buttonRestaurantListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            System.out.println(nameRestaurant.getText().toString()+ " nom RESTO !!!!");
-            Restaurant resto = new Restaurant();
-            resto.setNom(nameRestaurant.getText().toString());
-            resto.setLatitude(Float.parseFloat(latitude.getText().toString()));
-            resto.setLongitude(Float.parseFloat(longitude.getText().toString()));
+            Restaurant restaurant = new Restaurant(NO_RESTAURANT,Float.parseFloat(latitude.getText().toString()),
+                    Float.parseFloat(longitude.getText().toString()),nameRestaurant.getText().toString());
+            mRestaurantViewModel.insert(restaurant);
         }
     };
-
 }
