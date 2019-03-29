@@ -66,12 +66,16 @@ public class MailFragment extends Fragment{
     private View.OnClickListener buttonMailListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            String recipient = mRecipient.getText().toString().trim();
             String subjet = mSubject.getText().toString().trim();
             String message = mMessage.getText().toString().trim();
 
-            sendEmail(recipient,subjet,message);
-            ((MainActivity)getActivity()).hide();
+            if (!message.equals("")) {
+                sendEmail("thomas@thomasnormant.fr", subjet, message);
+                ((MainActivity) getActivity()).hide();
+            }else {
+                Toast.makeText(getActivity(),"Contenu vide",Toast.LENGTH_SHORT).show();
+                ((MainActivity)getActivity()).hide();
+            }
         }
     };
 
@@ -93,7 +97,6 @@ public class MailFragment extends Fragment{
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_mail, container, false);
-        mRecipient = rootView.findViewById(R.id.recipientEt);
         mSubject = rootView.findViewById(R.id.subjectEt);
         mMessage = rootView.findViewById(R.id.messageEt);
         mSendEmail = rootView.findViewById(R.id.SendEmail);

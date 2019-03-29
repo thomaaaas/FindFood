@@ -7,13 +7,13 @@
     android:orientation="vertical"
     tools:context=".MailFragment">
 
-    <EditText
-        android:id="@+id/recipientEt"
+    <TextView
+        android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        />
+        android:text="Feedback"
+        android:textAlignment="center"
+        android:textSize="24sp" />
 
     <EditText
         android:id="@+id/subjectEt"
@@ -23,11 +23,11 @@
 
     <EditText
         android:id="@+id/messageEt"
-        android:minHeight="150dp"
-        android:inputType="text"
-        android:hint="Mail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:hint="Mail"
+        android:inputType="text"
+        android:minHeight="150dp" />
     <Button
         android:id="@+id/SendEmail"
         android:layout_gravity="end"
