@@ -71,6 +71,7 @@ public class MailFragment extends Fragment{
             String message = mMessage.getText().toString().trim();
 
             sendEmail(recipient,subjet,message);
+            ((MainActivity)getActivity()).hide();
         }
     };
 
